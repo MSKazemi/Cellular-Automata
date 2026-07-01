@@ -1,0 +1,34 @@
+# Cellular-Automata
+
+> A MATLAB cellular automaton that simulates threshold-based cell toppling and neighbor redistribution on a two-dimensional grid, with animated visualization of the grid's evolution.
+
+Cellular-Automata is a small MATLAB project (originally written in the MATLAB R2015 era). It runs a square grid of integer-valued cells: each cell accumulates a value, and when the value crosses a fixed threshold the cell topples, shedding part of its content and redistributing the excess to neighboring cells with a downward directional bias. Overflow that leaves the grid edges is tracked as boundary accumulation. This toppling-and-redistribution rule is the mechanism behind sandpile / chip-firing style cellular automata. The grid is redrawn at each step and played back as a MATLAB movie animation.
+
+## Key concepts
+
+- Grid-based cellular automaton on a 10x10 (configurable) matrix of integer cells.
+- Threshold-triggered toppling: cells exceeding a threshold shed and redistribute excess to neighbors.
+- Directional (downward) redistribution with boundary overflow tracking.
+- State matrix plus actuation matrix drive each update step.
+- Iterative evolution until no cell exceeds the threshold, with 3-D history arrays of every step.
+- Animated visualization of the grid via MATLAB movie frames.
+
+## Files
+
+- README.md: Project overview, file roles, requirements, and how to run in MATLAB.
+- wmsk.m: Main actuation loop — toppling rule, neighbor redistribution, boundary overflow, and frame capture.
+- Rul.m: Per-cell state construction and toppling rule.
+- StActu.m: Iterates the update until the grid stabilizes, stacking each step into 3-D history arrays.
+- Shift.m: Row-shift helper used during redistribution.
+- mskgrp.m: Renders the grid as a labeled color plot for each animation frame.
+- TEST.m: Test driver that sets up an initial grid and starts the animation.
+
+## Run
+
+- Requires MATLAB.
+- Run `TEST` in MATLAB to set up a sample grid and start the animation.
+- Call `StActu(stateMatrix, actuationMatrix)` to iterate on custom matrices, or `wmsk(initialMatrix, actuationMatrix, dim, movrep, movra)` for the animated actuation.
+
+## License
+
+- Apache License 2.0.
